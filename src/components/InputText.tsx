@@ -14,7 +14,8 @@ export default function InputText({ onSetUserInput }) {
       className=""
       onSubmit={(e) => {
         e.preventDefault();
-        onSetUserInput(userInput);
+        userInput != "" ? onSetUserInput(userInput) : userInput;
+
         setUserInput("");
       }}
     >
@@ -24,7 +25,7 @@ export default function InputText({ onSetUserInput }) {
         value={userInput}
         name="text-input"
         id="text-input"
-        className="text-area relative"
+        className="text-area"
         placeholder="Type some text"
       ></textarea>
       <button type="submit" className="btn bg-white h-10 w-10 rounded-full">
