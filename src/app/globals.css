@@ -74,15 +74,14 @@ body {
 
 .text-area {
   margin: 0 auto;
-  height: 200px;
-  width: 50vw;
+  height: 10rem;
+
   background-color: #202327;
   border: none;
   border-radius: 50px;
   color: #888b8e;
   padding: 20px;
   font-size: 20px;
-  position: relative;
 }
 
 .svg {
@@ -94,7 +93,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 35%;
-  right: 45%;
+  opacity: 1000;
+  top: 30%;
+  right: 5%;
 }

@@ -87,10 +87,15 @@ export default function LanguageDetection({
   }, [detector, userInputText]);
 
   return (
-    <div>
-      <p className="text-white">Status: {status}</p>
+    <div className="">
+      {status.includes("Error") && (
+        <p className="text-red-500  bg-lime-400 p-6 rounded-md">{status}</p>
+      )}
       {detectedLanguage && (
-        <p className="text-white">Detected Language: {detectedLanguage}</p>
+        <p className="text-slate-950  bg-lime-400 p-1 rounded-md w-fit h-fit size-1">
+          Detected Language:{" "}
+          <span className="text-red-300">{detectedLanguage}</span>
+        </p>
       )}
     </div>
   );

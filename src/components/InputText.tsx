@@ -15,14 +15,12 @@ export default function InputText({ onSetUserInput }: InputTextProps) {
 
   return (
     <form
-      className=""
+      className="border-green-100  w-full relative"
       onSubmit={(e) => {
         e.preventDefault();
-
         if (userInput.trim() !== "") {
           onSetUserInput(userInput);
         }
-
         setUserInput("");
       }}
     >
@@ -32,10 +30,13 @@ export default function InputText({ onSetUserInput }: InputTextProps) {
         value={userInput}
         name="text-input"
         id="text-input"
-        className="text-area"
+        className="text-area inline-block w-full p-3 border rounded-md"
         placeholder="Type some text"
       ></textarea>
-      <button type="submit" className="btn bg-white h-10 w-10 rounded-full">
+      <button
+        type="submit"
+        className="btn bg-white h-10 w-10 rounded-full absolute  flex items-center justify-center shadow-md"
+      >
         <svg
           className="svg"
           width="15"
