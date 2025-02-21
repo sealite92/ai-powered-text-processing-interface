@@ -14,7 +14,10 @@ export default function InputText({ onSetUserInput }) {
       className=""
       onSubmit={(e) => {
         e.preventDefault();
-        userInput != "" ? onSetUserInput(userInput) : userInput;
+
+        if (userInput.trim() !== "") {
+          onSetUserInput(userInput);
+        }
 
         setUserInput("");
       }}
