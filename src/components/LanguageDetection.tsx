@@ -23,6 +23,7 @@ export default function LanguageDetection({ userInputText }) {
 
           if (canDetect === "readily") {
             const newDetector = await self.ai.languageDetector.create();
+            //eslint-disable-next-line
             setDetector(newDetector);
             setStatus("Language detector is ready");
           } else if (canDetect === "after-download") {
@@ -37,7 +38,9 @@ export default function LanguageDetection({ userInputText }) {
                 });
               },
             });
+            //eslint-disable-next-line
             await newDetector.ready;
+            //eslint-disable-next-line
             setDetector(newDetector);
             setStatus("Language detector is ready");
           }
@@ -53,31 +56,34 @@ export default function LanguageDetection({ userInputText }) {
     initializeDetector();
   }, []);
 
-  async function detectLanguage() {
-    if (!detector) {
-      setStatus("Language detector is not ready");
-      return;
-    }
-
-    try {
-      const results = await detector.detect(userInputText);
-      if (results.length > 0) {
-        setDetectedLanguage(
-          `${
-            results[0].detectedLanguage
-          } (Confidence: ${results[0].confidence.toFixed(4)})`
-        );
-      } else {
-        setDetectedLanguage("Unable to detect language");
-      }
-    } catch (error) {
-      console.error("Error detecting language", error);
-      setStatus("Error detecting language");
-    }
-  }
   useEffect(() => {
-    detectLanguage();
-  }, [userInputText]);
+    async function detectLanguage() {
+      if (!detector) {
+        setStatus("Language detector is not ready");
+        return;
+      }
+
+      try {
+        //eslint-disable-next-line
+        const results = await detector.detect(userInputText);
+        if (results.length > 0) {
+          setDetectedLanguage(
+            `${
+              results[0].detectedLanguage
+            } (Confidence: ${results[0].confidence.toFixed(4)})`
+          );
+        } else {
+          setDetectedLanguage("Unable to detect language");
+        }
+      } catch (error) {
+        console.error("Error detecting language", error);
+        setStatus("Error detecting language");
+      }
+    }
+    if (userInputText) {
+      detectLanguage();
+    }
+  }, [detector, userInputText]);
 
   return (
     <div>
