@@ -2,10 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 
-export default function LanguageDetection({ userInputText }) {
+interface LanguageDetectionProps {
+  userInputText: string;
+}
+
+export default function LanguageDetection({
+  userInputText,
+}: LanguageDetectionProps) {
   //const [text, setText] = useState('');
   const [detectedLanguage, setDetectedLanguage] = useState("");
-  const [detector, setDetector] = useState(null);
+  const [detector, setDetector] = useState<AILanguageDetector | null>(null);
   const [status, setStatus] = useState("");
 
   useEffect(() => {
@@ -39,7 +45,6 @@ export default function LanguageDetection({ userInputText }) {
               },
             });
             //eslint-disable-next-line
-            await newDetector.ready;
             //eslint-disable-next-line
             setDetector(newDetector);
             setStatus("Language detector is ready");
