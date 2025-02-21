@@ -2,10 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 
-export default function LanguageDetection({ userInputText }) {
+export default function LanguageDetection({
+  userInputText,
+}: {
+  userInputText: string;
+}) {
   //const [text, setText] = useState('');
   const [detectedLanguage, setDetectedLanguage] = useState("");
-  const [detector, setDetector] = useState(null);
+  const [detector, setDetector] = useState<AILanguageDetector | null>(null);
   const [status, setStatus] = useState("");
 
   useEffect(() => {
@@ -23,7 +27,7 @@ export default function LanguageDetection({ userInputText }) {
 
           if (canDetect === "readily") {
             const newDetector = await self.ai.languageDetector.create();
-            //eslint-disable-next-line
+
             setDetector(newDetector);
             setStatus("Language detector is ready");
           } else if (canDetect === "after-download") {
@@ -38,7 +42,7 @@ export default function LanguageDetection({ userInputText }) {
                 });
               },
             });
-            await newDetector.ready;
+            // Removed await newDetector.ready as it does not exist on AILanguageDetector
             setDetector(newDetector);
             setStatus("Language detector is ready");
           }

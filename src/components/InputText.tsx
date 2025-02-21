@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function InputText({ onSetUserInput }) {
+interface InputTextProps {
+  onSetUserInput: (input: string) => void;
+}
+
+export default function InputText({ onSetUserInput }: InputTextProps) {
   // const handleSetInputText = (e) => {
   //   e.preventDefault();
   //   // setInputText("");
